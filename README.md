@@ -41,6 +41,12 @@ Open the API at [localhost:4000/docs](http://localhost:4000/docs) and choose one
 
 ## Test
 
+Run the test suite.
+
+```sh
+make test
+```
+
 ## Contributing
 
 Please, consider the following.
