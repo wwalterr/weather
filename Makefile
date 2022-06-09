@@ -1,10 +1,25 @@
-install:
+environment:
+	python3 -m venv venv
+
+activate:
+	source venv/bin/activate
+
+install: 
 	pip install -r requirements.txt
 
 format:
-	black *.py
+	.
 
 lint:
-	pylint --disable=R,C,W1203,E1101 mlib cli utilscli
+	.
 
-all: install format lint
+test:
+	.
+
+deploy:
+	.
+
+start:
+	uvicorn source.application:application --host=0.0.0.0 --port=4000 --workers 2 --reload --log-level error
+
+all: install format lint test deploy
