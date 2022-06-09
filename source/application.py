@@ -1,6 +1,6 @@
-from fastapi import FastAPI, status
+from fastapi import FastAPI
 
-from fastapi.responses import RedirectResponse
+from .weather.router import router as weather_router
 
 application = FastAPI(
     title='Zapata',
@@ -10,6 +10,4 @@ application = FastAPI(
     redoc_url='/redoc'
 )
 
-@application.get('/', status_code=status.HTTP_308_PERMANENT_REDIRECT, include_in_schema=False)
-async def index():
-    return RedirectResponse('/docs')
+application.include_router(weather_router)
