@@ -7,11 +7,12 @@ router = APIRouter(
     tags=['weather'],
 )
 
+
 @router.get('/pressure', summary='Weather pressure', status_code=status.HTTP_200_OK)
-async def pressure(key: str):
-    return extract_file(key, 'pressure')
+async def pressure(id: str):
+    return extract_file(id=id, key='pressure')
 
 
 @router.get('/temperature', summary='Weather temperature in celsius and fahrenheit', status_code=status.HTTP_200_OK)
-async def temperature(key: str):
-    return extract_file(key, 'temperature')
+async def temperature(id: str):
+    return extract_file(id=id, key='temperature')
