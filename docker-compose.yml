@@ -1,0 +1,17 @@
+# docker-compose up --build -d
+
+version: "3.9"
+
+services:
+  # docker exec -it application bash
+  application:
+    container_name: application
+    restart: always
+    build: .
+    image: application
+    # Add --reaload in development
+    command: python -m uvicorn source.application:application --host 0.0.0.0 --port 4000 --workers 2
+    ports:
+      - "4000:4000"
+    volumes:
+      - .:/code
