@@ -2,7 +2,11 @@ from fastapi import FastAPI, Request
 
 from .weather.router import router as weather_router
 
-application = FastAPI()
+application = FastAPI(
+    title='Zapata',
+    description='Weather API',
+    version='1.0.0'
+)
 
 application.include_router(weather_router)
 
