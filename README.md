@@ -35,7 +35,9 @@ Start a server.
 make start
 ```
 
-Open the API at [localhost:4000/docs](http://localhost:4000/docs). Choose one code from this [list](https://tgftp.nws.noaa.gov/data/observations/metar/decoded) to use the API.
+Open the API at [localhost:4000/docs](http://localhost:4000/docs) and choose one code from this [list](https://tgftp.nws.noaa.gov/data/observations/metar/decoded) to use the API.
+
+## Test
 
 ## Contributing
 
