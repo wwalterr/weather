@@ -9,6 +9,8 @@ Weather API
 
 ## Installation
 
+> Skip all the installation using Docker and Docker Compose `docker-compose up --build -d`
+
 Use the package manager APT to install the general dependencies.
 
 ```sh
