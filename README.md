@@ -9,7 +9,7 @@ Weather API
 
 ## Installation
 
-> Skip all the installation using Docker and Docker Compose `docker-compose up --build -d`
+> Skip all the installation using Docker and Docker Compose `docker-compose up --build -d` or `make all` which installs everything locally, i.e in the actual host
 
 Use the package manager APT to install the general dependencies.
 
@@ -27,6 +27,12 @@ Activate the virtual environment.
 
 ```sh
 sudo make activate
+```
+
+Install the dependencies in the virtual environment.
+
+```sh
+make install
 ```
 
 ## Usage
