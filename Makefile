@@ -1,14 +1,11 @@
 environment:
 	python3 -m venv venv
 
-activate:
-	source venv/bin/activate
-
 install: 
 	pip install -r requirements.txt
 
 test:
-	python3 -m pytest --capture=no
+	pytest --capture=no
 
 deploy:
 	.

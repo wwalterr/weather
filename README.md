@@ -26,7 +26,7 @@ make environment
 Activate the virtual environment.
 
 ```sh
-sudo make activate
+source ./venv/bin/activate
 ```
 
 Install the dependencies in the virtual environment.
