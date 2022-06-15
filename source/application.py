@@ -1,4 +1,4 @@
-from fastapi import FastAPI, Request
+from fastapi import FastAPI
 
 from .weather.router import router as weather_router
 
@@ -9,8 +9,3 @@ application = FastAPI(
 )
 
 application.include_router(weather_router)
-
-
-@application.exception_handler(ValueError)
-async def exception_handler(request: Request, exception: ValueError) -> dict:
-    return {'code': status.HTTP_400_BAD_REQUEST, 'content': {'message': str(exception)}}
