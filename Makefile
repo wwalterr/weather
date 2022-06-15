@@ -5,7 +5,7 @@ install:
 	pip install -r requirements.txt
 
 test:
-	pytest --capture=no
+	pytest --capture=no --disable-warnings
 
 deploy:
 	.
