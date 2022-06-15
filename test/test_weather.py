@@ -4,46 +4,47 @@ from httpx import AsyncClient
 
 from source.application import application
 
+
 BASE_URL = 'http://localhost:4000'
 
 
 @mark.parametrize(
-    'key, result',
-    [
-        ('AABP', { 'Pressure (altimeter)': ' 29.77 in. Hg (1008 hPa)' }),
-        ('AGGC', { 'Pressure (altimeter)': ' 29.80 in. Hg (1009 hPa)' })
+    argnames='id, result',
+    argvalues=[
+        ('AABP', '"29.77 in. Hg (1008 hPa)"'),
+        ('AGGC', '"29.80 in. Hg (1009 hPa)"')
     ]
 )
 @mark.asyncio
-async def test_pressure(key: str, result: dict):
+async def test_pressure(id: str, result: str):
     async with AsyncClient(app=application, base_url=BASE_URL) as client:
-        response = await client.get(f'/weather/pressure/{key}')
+        response = await client.get(url=f'/weather/pressure/{id}')
 
     assert response.status_code == 200
 
-    assert response.json() == result
+    assert response.text == result
 
 
 @mark.parametrize(
-    'key, result',
-    [
-        ('AABP', { 'Temperature': ' 75 F (24 C)' }),
-        ('AGGC', { 'Temperature': ' 84 F (29 C)' })
+    argnames='id, result',
+    argvalues=[
+        ('AABP', '"75 F (24 C)"'),
+        ('AGGC', '"84 F (29 C)"')
     ]
 )
 @mark.asyncio
-async def test_temperature(key: str, result: dict):
+async def test_temperature(id: str, result: str):
     async with AsyncClient(app=application, base_url=BASE_URL) as client:
-        response = await client.get(f'/weather/temperature/{key}')
+        response = await client.get(url=f'/weather/temperature/{id}')
 
     assert response.status_code == 200
 
-    assert response.json() == result
+    assert response.text == result
 
 
 @mark.parametrize(
-    'url',
-    [
+    argnames='url',
+    argvalues=[
         '/weather/pressure/',
         '/weather/temperature/'
     ]
@@ -51,6 +52,6 @@ async def test_temperature(key: str, result: dict):
 @mark.asyncio
 async def test_failure(url: str):
     async with AsyncClient(app=application, base_url=BASE_URL) as client:
-        response = await client.get(url)
+        response = await client.get(url=url)
 
     assert response.status_code == 404

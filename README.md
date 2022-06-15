@@ -1,4 +1,4 @@
-# Zapata
+# Weather
 
 Weather API
 
