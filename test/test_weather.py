@@ -1,10 +1,10 @@
 from pytest import mark
 
-from fastapi.testclient import TestClient
+from httpx import AsyncClient
 
 from source.application import application
 
-client = TestClient(application)
+BASE_URL = 'http://localhost:4000'
 
 
 @mark.parametrize(
@@ -14,8 +14,10 @@ client = TestClient(application)
         ('AGGC', { 'Pressure (altimeter)': ' 29.80 in. Hg (1009 hPa)' })
     ]
 )
-def test_pressure(key: str, result: dict):
-    response = client.get(f'/weather/pressure/{key}')
+@mark.asyncio
+async def test_pressure(key: str, result: dict):
+    async with AsyncClient(app=application, base_url=BASE_URL) as client:
+        response = await client.get(f'/weather/pressure/{key}')
 
     assert response.status_code == 200
 
@@ -29,8 +31,10 @@ def test_pressure(key: str, result: dict):
         ('AGGC', { 'Temperature': ' 84 F (29 C)' })
     ]
 )
-def test_temperature(key: str, result: dict):
-    response = client.get(f'/weather/temperature/{key}')
+@mark.asyncio
+async def test_temperature(key: str, result: dict):
+    async with AsyncClient(app=application, base_url=BASE_URL) as client:
+        response = await client.get(f'/weather/temperature/{key}')
 
     assert response.status_code == 200
 
@@ -44,7 +48,9 @@ def test_temperature(key: str, result: dict):
         '/weather/temperature/'
     ]
 )
-def test_failure(url: str):
-    response = client.get(url)
+@mark.asyncio
+async def test_failure(url: str):
+    async with AsyncClient(app=application, base_url=BASE_URL) as client:
+        response = await client.get(url)
 
     assert response.status_code == 404
