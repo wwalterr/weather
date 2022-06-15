@@ -1,17 +1,36 @@
 # docker-compose up --build -d
 
-version: "3.3"
+version: '3.3'
 
 services:
+  cache:
+    container_name: cache
+    restart: always
+    image: redis:7.0.2-alpine
+    environment:
+      - ALLOW_EMPTY_PASSWORD=yes
+    ports:
+      - '6379:6379'
+    volumes:
+      - cache:/data
+
   # docker exec -it application bash
   application:
     container_name: application
     restart: always
     build: .
     image: application
+    depends_on:
+      - cache
     # Add --reaload in development
     command: python -m uvicorn source.application:application --host 0.0.0.0 --port 4000 --workers 2
     ports:
-      - "4000:4000"
+      - '4000:4000'
     volumes:
       - .:/code
+
+volumes:
+  cache:
+    driver: local
+  application:
+    driver: local
