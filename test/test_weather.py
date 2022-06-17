@@ -4,6 +4,11 @@ from httpx import AsyncClient
 
 from source.application import application
 
+# Create a cache instance if the tests are running
+# without having one already created by the Docker
+# Compose:
+#
+# docker run -it -d --name cache -e ALLOW_EMPTY_PASSWORD='yes' -p 6379:6379 redis:7.0.2-alpine # container name and image name
 
 BASE_URL = 'http://localhost:4000'
 
