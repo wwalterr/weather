@@ -1,0 +1,11 @@
+Station name not available
+Nov 11, 2019 - 07:00 PM EST / 2019.11.12 0000 UTC
+Wind: from the S (170 degrees) at 9 MPH (8 KT):0
+Visibility: greater than 7 mile(s):0
+Sky conditions: mostly clear
+Temperature: 48 F (9 C)
+Dew Point: 32 F (0 C)
+Relative Humidity: 53%
+Pressure (altimeter): 30.09 in. Hg (1019 hPa)
+ob: ZYYK 120000Z 17004MPS 9999 FEW040 09/00 Q1019 NOSIG
+cycle: 0
