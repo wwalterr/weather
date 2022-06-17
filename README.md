@@ -6,6 +6,7 @@ Weather API
 
 - [Python](https://www.python.org/)
 - [Fast API](https://fastapi.tiangolo.com/)
+- [Redis](https://redis.io/)
 
 ## Installation
 
