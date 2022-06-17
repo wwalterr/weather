@@ -1,4 +1,4 @@
-from pytest import mark
+from pytest import fixture, mark
 
 from httpx import AsyncClient
 
@@ -10,7 +10,10 @@ from source.application import application
 #
 # docker run -it -d --name cache -e ALLOW_EMPTY_PASSWORD='yes' -p 6379:6379 redis:7.0.2-alpine # container name and image name
 
-BASE_URL = 'http://localhost:4000'
+
+@fixture(autouse=True)
+def settings():
+    return {'base_url': 'http://localhost:4000'}
 
 
 @mark.parametrize(
@@ -21,8 +24,8 @@ BASE_URL = 'http://localhost:4000'
     ]
 )
 @mark.asyncio
-async def test_pressure(id: str, result: str):
-    async with AsyncClient(app=application, base_url=BASE_URL) as client:
+async def test_pressure(settings: dict, id: str, result: str):
+    async with AsyncClient(app=application, base_url=settings.get('base_url')) as client:
         response = await client.get(url=f'/weather/pressure/{id}')
 
     assert response.status_code == 200
@@ -38,8 +41,8 @@ async def test_pressure(id: str, result: str):
     ]
 )
 @mark.asyncio
-async def test_temperature(id: str, result: str):
-    async with AsyncClient(app=application, base_url=BASE_URL) as client:
+async def test_temperature(settings: dict, id: str, result: str):
+    async with AsyncClient(app=application, base_url=settings.get('base_url')) as client:
         response = await client.get(url=f'/weather/temperature/{id}')
 
     assert response.status_code == 200
@@ -55,8 +58,8 @@ async def test_temperature(id: str, result: str):
     ]
 )
 @mark.asyncio
-async def test_failure(url: str):
-    async with AsyncClient(app=application, base_url=BASE_URL) as client:
+async def test_failure(settings: dict, url: str):
+    async with AsyncClient(app=application, base_url=settings.get('base_url')) as client:
         response = await client.get(url=url)
 
     assert response.status_code == 404
