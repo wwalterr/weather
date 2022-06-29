@@ -36,7 +36,7 @@ async def scrap_document(id: str) -> dict:
 
 async def document(id: str) -> dict:
     # TO DO: Create a pool https://stackoverflow.com/a/66561434
-    redis = from_url(url='redis://localhost', decode_responses=True)
+    redis = from_url(url='redis://cache', decode_responses=True)
 
     if await redis.exists(id):
         # TO DO: Expire document
