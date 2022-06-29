@@ -10,9 +10,9 @@ router = APIRouter(
 
 @router.get('/pressure/{id}', summary='Weather pressure from altimeter', status_code=status.HTTP_200_OK)
 async def pressure(id: str):
-    return (await document(id=id)).get('pressure_altimeter', '')
+    return (await document(id=id)).get('pressure_altimeter', None)
 
 
 @router.get('/temperature/{id}', summary='Weather temperature in celsius and fahrenheit', status_code=status.HTTP_200_OK)
 async def temperature(id: str):
-    return (await document(id=id)).get('temperature', '')
+    return (await document(id=id)).get('temperature', None)
