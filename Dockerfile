@@ -6,7 +6,7 @@
 
 # docker push username/application # username and tag - change username
 
-FROM python:3.10.2
+FROM python:3-alpine
 
 # Prevent Python from writing intermediate files
 ENV PYTHONDONTWRITEBYTECODE 1
