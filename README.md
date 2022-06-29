@@ -58,6 +58,8 @@ make test
 
 Deploy in a cluster using [Minikube](https://minikube.sigs.k8s.io/docs/start/) and [Kube CTL](https://kubernetes.io/docs/tasks/tools/install-kubectl-linux/).
 
+> Clean the resources `make clean`
+
 ```sh
 minikube start
 ```
@@ -66,7 +68,7 @@ minikube start
 make deploy
 ```
 
-Open the cluster URL that will be shown in the last log line.
+Open the cluster URL that will be shown in the last log line to see the API or type `minikube dashboard` to monitor the application.
 
 ## Contributing
 
