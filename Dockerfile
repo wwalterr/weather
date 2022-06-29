@@ -23,6 +23,6 @@ RUN pip install --user -r requirements.txt
 COPY . /code/
 
 # Not necessary while using Docker Compose
-# EXPOSE 4000
+EXPOSE 4000
 
-# CMD python -m uvicorn source.application:application --host 0.0.0.0 --port 4000 --workers 2
+CMD python -m uvicorn source.application:application --host 0.0.0.0 --port 4000 --workers 2

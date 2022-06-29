@@ -10,7 +10,7 @@ Weather API
 
 ## Installation
 
-> Skip all the installation using Docker and Docker Compose `docker-compose up --build -d` or `make all` which installs everything locally, i.e in the actual host
+> Skip all the installation using [Docker](https://www.digitalocean.com/community/tutorials/how-to-install-and-use-docker-on-ubuntu-20-04) and [Docker Compose](https://www.digitalocean.com/community/tutorials/how-to-install-and-use-docker-compose-on-ubuntu-20-04) `docker-compose up --build -d` or `make all` which installs everything locally, i.e in the actual host
 
 Use the package manager APT to install the general dependencies.
 
@@ -44,7 +44,7 @@ Start a server.
 make start
 ```
 
-Open the API at [localhost:4000/docs](http://localhost:4000/docs) and choose one file name from this [list](https://tgftp.nws.noaa.gov/data/observations/metar/decoded) or from *assets/samples*.
+Open the API at [localhost:4000/docs](http://localhost:4000/docs) and choose one file name from this [list](https://tgftp.nws.noaa.gov/data/observations/metar/decoded) or from _assets/samples_.
 
 ## Test
 
@@ -53,6 +53,20 @@ Run the test suite.
 ```sh
 make test
 ```
+
+## Deploy
+
+Deploy in a cluster using [Minikube](https://minikube.sigs.k8s.io/docs/start/) and [Kube CTL](https://kubernetes.io/docs/tasks/tools/install-kubectl-linux/).
+
+```sh
+minikube start
+```
+
+```sh
+make deploy
+```
+
+Open the cluster URL that will be shown in the last log line.
 
 ## Contributing
 

@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: application
+spec:
+  selector:
+    matchLabels:
+      app: application
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: application
+    spec:
+      restartPolicy: Always
+      containers:
+        - name: application
+          image: wwalterr/weather
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 4000
